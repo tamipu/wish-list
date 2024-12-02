@@ -1,11 +1,11 @@
 <div class="container">
-  <h1>Wish List</h1>
+  <h1>My Wish List</h1>
   <app-filter
   [filterCriteria]="filterCriteria"
   (filterChange)="filterCriteria = $event">
   </app-filter>
   <app-add-wish (wishAdded)="addWish($event)"></app-add-wish>
-  <app-wish-list
+  <app-wish-list class="awl"
     [items]="getFilteredItems()"
     (toggle)="toggleItem($event)">
   </app-wish-list>

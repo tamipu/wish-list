@@ -16,7 +16,9 @@ import { FormsModule } from '@angular/forms';
           name="newWishText"
         />
       </div>
+    <div class="d-flex justify-content-center">
       <button type="submit" class="btn btn-primary">Add Wish</button>
+    </div>
     </form>
   `,
   imports: [FormsModule],

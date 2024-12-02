@@ -1,12 +1,21 @@
 <div class="container">
-  <ul class="wish-list">
-    <li *ngFor="let item of items">
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" [checked]="item.isCompleted">
-          {{ item.name }}
-        </label>
+
+  <div class="container">
+    <form (submit)="addWish()">
+      <div class="form-group">
+        <input type="text" name= "newWishText" class="form-control" [(ngModel)]="newWish" placeholder="Enter your wish">
       </div>
-    </li>
-  </ul>
-</div>
+      <button type="submit" class="btn btn-primary">Add Wish</button>
+    </form>
+
+    <ul class="wish-list">
+      <li *ngFor="let item of items; index as ii">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" [checked]="item.isCompleted" (click)="toggleItem(item)" [attr.data-index]="ii">
+            {{ item.name }}
+          </label>
+        </div>
+      </li>
+    </ul>
+  </div>

@@ -1,28 +1,12 @@
 <div class="container">
   <h1>Wish List</h1>
-  <div class="form-group">
-    <select id="filter" class="form-control" [(ngModel)]="filterCriteria" (ngModelChange)="getFilteredItems()">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="notCompleted">Not Completed</option>
-    </select>
-  </div>
-
-    <form (submit)="addWish()">
-      <div class="form-group">
-        <input type="text" name= "newWishText" class="form-control" [(ngModel)]="newWish" placeholder="Enter your wish">
-      </div>
-      <button type="submit" class="btn btn-primary">Add Wish</button>
-    </form>
-
-    <ul class="wish-list">
-      <li *ngFor="let item of getFilteredItems(); index as ii">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" [checked]="item.isCompleted" (click)="toggleItem(item)" [attr.data-index]="ii">
-            {{ item.name }}
-          </label>
-        </div>
-      </li>
-    </ul>
-  </div>
+  <app-filter
+  [filterCriteria]="filterCriteria"
+  (filterChange)="filterCriteria = $event">
+  </app-filter>
+  <app-add-wish (wishAdded)="addWish($event)"></app-add-wish>
+  <app-wish-list
+    [items]="getFilteredItems()"
+    (toggle)="toggleItem($event)">
+  </app-wish-list>
+</div>

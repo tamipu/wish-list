@@ -1,41 +1,41 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { WishItem } from '../shared/module/wishItem';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FilterComponent } from './filter/filter.component';
+import { AddWishComponent } from './add-wish/add-wish.component';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule],
+  imports: [FilterComponent, AddWishComponent, WishListComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-newWish: string = '';
-items: WishItem[] = [
-  new WishItem('New car'),
-  new WishItem('Trip to Hawaii', true),
-  new WishItem('Mansion in the Hamptons')
-];
-title = 'wishlist';
-filterCriteria: string = 'all';
-addWish() {
-  if (this.newWish.trim()) {
-    this.items.push({ name: this.newWish, isCompleted: false });
-    this.newWish = '';
+  items: WishItem[] = [
+    new WishItem('New car'),
+    new WishItem('Trip to Hawaii', true),
+    new WishItem('Mansion in the Hamptons')
+  ];
+  filterCriteria: string = 'all';
+
+  addWish(newWish: string) {
+    if (newWish.trim()) {
+      this.items.push({ name: newWish, isCompleted: false });
+    }
   }
-}
-getFilteredItems() {
-  if (this.filterCriteria === 'completed') {
-    return this.items.filter(item => item.isCompleted);
-  } else if (this.filterCriteria === 'notCompleted') {
-    return this.items.filter(item => !item.isCompleted);
-  } else {
-    return this.items;
+
+  getFilteredItems() {
+    if (this.filterCriteria === 'completed') {
+      return this.items.filter(item => item.isCompleted);
+    } else if (this.filterCriteria === 'notCompleted') {
+      return this.items.filter(item => !item.isCompleted);
+    } else {
+      return this.items;
+    }
   }
-}
-  toggleItem(item: { name: string, isCompleted: boolean }) {
+
+  toggleItem(item: WishItem) {
     item.isCompleted = !item.isCompleted;
   }
 }

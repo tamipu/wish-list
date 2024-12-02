@@ -7,14 +7,12 @@ import { CommonModule } from '@angular/common';
   selector: 'app-wish-list',
   standalone: true,
   template: `
-    <ul class="wish-list">
-      <app-wish-item
-        *ngFor="let item of items"
-        [item]="item"
-        (toggle)="toggle.emit(item)">
-      </app-wish-item>
-    </ul>
-  `,
+    <app-wish-item
+      *ngFor="let item of items"
+      [item]="item"
+      (toggle)="toggle.emit(item)">
+    </app-wish-item>
+`,
   imports: [WishItemComponent, CommonModule],
   styleUrls: ['./wish-list.component.css']
 })

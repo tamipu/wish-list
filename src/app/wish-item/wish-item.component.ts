@@ -6,7 +6,7 @@ import { WishItem } from '../../shared/module/wishItem';
   standalone: true,
     template: `
     <li>
-      <div class="form-check">
+      <div class="form-check d-flex justify-content-between align-items-center mb-3">
         <label class="form-check-label">
           <input
             class="form-check-input"
@@ -16,6 +16,7 @@ import { WishItem } from '../../shared/module/wishItem';
           />
           {{ item.name }}
         </label>
+          <button class="btn btn-danger btn-sm">X</button>
       </div>
     </li>
   `,

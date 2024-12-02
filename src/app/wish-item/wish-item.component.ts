@@ -4,7 +4,7 @@ import { WishItem } from '../../shared/module/wishItem';
 @Component({
   selector: 'app-wish-item',
   standalone: true,
-  template: `
+    template: `
     <li>
       <div class="form-check">
         <label class="form-check-label">

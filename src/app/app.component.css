@@ -17,4 +17,5 @@ h1 {
 .awl {
   color: #333;
   margin: 20px;
+  list-style: none;
 }

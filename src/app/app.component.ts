@@ -3,6 +3,7 @@ import { WishItem } from '../shared/module/wishItem';
 import { FilterComponent } from './filter/filter.component';
 import { AddWishComponent } from './add-wish/add-wish.component';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { events } from '../shared/service/EventService';
 
 @Component({
   selector: 'app-root',
@@ -38,4 +39,14 @@ export class AppComponent {
   toggleItem(item: WishItem) {
     item.isCompleted = !item.isCompleted;
   }
-}
+
+  removeItem(item: WishItem) {
+    this.items = this.items.filter(i => i !== item);
+  }
+
+  constructor() {
+    events.listen('removeItem', (item: WishItem) => {
+      this.removeItem(item);
+    });
+    }
+  }

@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { WishItem } from '../../shared/module/wishItem';
+import { events } from '../../shared/service/EventService';
 
 @Component({
   selector: 'app-wish-item',
@@ -16,7 +17,7 @@ import { WishItem } from '../../shared/module/wishItem';
           />
           {{ item.name }}
         </label>
-          <button class="btn btn-danger btn-sm">X</button>
+          <button class="btn-close" (click)="onRemove()">X</button>
       </div>
     </li>
   `,
@@ -25,8 +26,13 @@ import { WishItem } from '../../shared/module/wishItem';
 export class WishItemComponent {
   @Input() item!: WishItem;
   @Output() toggle = new EventEmitter<void>();
+  @Output() remove = new EventEmitter<WishItem>();
 
   onToggle() {
     this.toggle.emit();
+  }
+
+  onRemove() {
+    events.emit('removeItem', this.item);
   }
 }
